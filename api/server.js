@@ -22,17 +22,18 @@ const db = new sqlite3.Database(dbPath, sqlite3.OPEN_READONLY, (err) => {
 
 // API route to get all crypto data
 app.get('/api/crypto', (req, res) => {
-  const query = `SELECT * FROM crypto_prices ORDER BY timestamp DESC`;
+  const query = `SELECT * FROM prices ORDER BY timestamp DESC`;
 
   db.all(query, [], (err, rows) => {
     if (err) {
-      console.error(err.message);
+      console.error('DB Query Error:', err);
       res.status(500).json({ error: 'Failed to fetch data' });
     } else {
       res.json(rows);
     }
   });
 });
+
 
 // Start server
 app.listen(PORT, () => {
