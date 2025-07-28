@@ -1,15 +1,383 @@
+/* src/App.css */
+
+/* Import a futuristic-looking font from Google Fonts */
+@import url('https://fonts.googleapis.com/css2?family=Orbitron:wght@400;700&family=Rajdhani:wght@300;400;500;600;700&display=swap');
+
+/* Base styles for the entire page */
+body {
+    /* Dark background with a subtle diagonal gradient */
+    background: linear-gradient(135deg, #1a1a2e, #16213e, #0f3460);
+    min-height: 100vh; /* Ensure full viewport height for the gradient */
+    margin: 0;
+    padding: 0;
+    font-family: 'Rajdhani', sans-serif; /* A good legible techy font for body */
+    color: #e0e0e0; /* Light text for dark background */
+    line-height: 1.6;
+    overflow-x: hidden; /* Prevent horizontal scroll due to potential overflows */
+}
+
 .App {
-  text-align: center;
-  font-family: Arial, sans-serif;
+    text-align: center;
+    display: flex; /* Use flexbox for overall layout */
+    flex-direction: column; /* Stack header and main vertically */
+    min-height: 100vh;
 }
 
+/* Header styles */
 .App-header {
-  background-color: #282c34;
-  padding: 20px;
-  color: white;
-  margin-bottom: 20px;
+    background-color: rgba(26, 26, 46, 0.8); /* Slightly transparent dark background */
+    color: #00bcd4; /* Cyan/Teal for a techy feel */
+    padding: 25px 20px;
+    border-bottom: 2px solid rgba(0, 188, 212, 0.3); /* Subtle glow border */
+    box-shadow: 0 5px 15px rgba(0, 188, 212, 0.2), 0 0 30px rgba(0, 188, 212, 0.1) inset; /* Outer and inner glow */
+    position: sticky; /* Make header sticky */
+    top: 0;
+    z-index: 1000; /* Ensure it stays on top */
 }
 
-main {
-  padding: 20px;
+.App-header h1 {
+    font-family: 'Orbitron', sans-serif; /* More futuristic font for the main title */
+    font-size: 2.8em;
+    margin: 0;
+    text-shadow: 0 0 10px rgba(0, 188, 212, 0.7); /* Text glow */
+}
+
+/* Main content area */
+.dashboard-container {
+    flex-grow: 1; /* Allow main content to take available space */
+    display: flex; /* Use flexbox for main content + potential sidebar */
+    flex-direction: column; /* Default to column for main content sections */
+    max-width: 1400px; /* Max width for the entire dashboard */
+    margin: 30px auto; /* Centered with top/bottom margin */
+    padding: 25px;
+    background-color: rgba(20, 20, 35, 0.7); /* Semi-transparent dark background */
+    border-radius: 12px;
+    border: 1px solid rgba(0, 188, 212, 0.1); /* Subtle border */
+    box-shadow: 0 0 20px rgba(0, 188, 212, 0.15), 0 0 40px rgba(0, 188, 212, 0.05) inset; /* Outer glow and inner glow */
+}
+
+/* Headings within main content */
+h2 {
+    font-family: 'Orbitron', sans-serif;
+    color: #00bcd4; /* Techy cyan/teal */
+    text-align: center;
+    margin-top: 30px;
+    margin-bottom: 25px;
+    font-size: 2em;
+    text-shadow: 0 0 8px rgba(0, 188, 212, 0.5);
+}
+
+/* Table Container for overflow */
+.table-container {
+    max-height: 500px; /* Adjust as needed */
+    overflow-y: auto; /* Enable vertical scrolling */
+    border: 1px solid rgba(0, 188, 212, 0.2); /* Subtle techy border */
+    border-radius: 8px;
+    margin: 20px auto;
+    width: 100%; /* Take full width of parent */
+    box-shadow: 0 0 15px rgba(0, 188, 212, 0.1);
+}
+
+/* Styles for tables */
+table {
+    width: 100%;
+    border-collapse: separate;
+    border-spacing: 0;
+    margin: 0; /* Remove default margin as it's now in .table-container */
+    background-color: rgba(30, 30, 50, 0.6); /* Slightly lighter transparent dark for table background */
+    border-radius: 8px; /* Apply to the table itself */
+    overflow: hidden; /* Ensures rounded corners are visible within the table */
+    color: #e0e0e0; /* Light text color for table content */
+}
+
+th, td {
+    border: 1px solid rgba(0, 188, 212, 0.1); /* Lighter, more subtle borders */
+    padding: 15px 18px; /* More padding for a cleaner look */
+    text-align: left;
+}
+
+th {
+    background-color: rgba(0, 188, 212, 0.15); /* Techy header background */
+    color: #00bcd4; /* Header text color */
+    font-weight: 700; /* Bold font for headers */
+    font-family: 'Orbitron', sans-serif; /* Futuristic font for table headers */
+    position: sticky; /* Sticky headers for scrollable tables */
+    top: 0;
+    z-index: 1;
+}
+
+/* Alternating row colors for dark theme */
+tr:nth-child(even) {
+    background-color: rgba(30, 30, 50, 0.7); /* Slightly different shade for even rows */
+}
+tr:nth-child(odd) {
+    background-color: rgba(30, 30, 50, 0.5); /* Base shade for odd rows */
+}
+
+/* Hover effect on table rows */
+tr:hover {
+    background-color: rgba(0, 188, 212, 0.3); /* A more pronounced techy hover effect */
+    box-shadow: 0 0 10px rgba(0, 188, 212, 0.4); /* Subtle glow on hover */
+    transition: background-color 0.3s ease-in-out, box-shadow 0.3s ease-in-out;
+}
+
+/* Styles for select dropdown */
+.select-container {
+    margin-bottom: 20px;
+    text-align: center;
+}
+
+.select-container label {
+    font-family: 'Orbitron', sans-serif;
+    color: #00bcd4;
+    margin-right: 15px;
+    font-size: 1.1em;
+    text-shadow: 0 0 5px rgba(0, 188, 212, 0.5);
+}
+
+select {
+    padding: 12px 15px;
+    border-radius: 8px; /* Slightly more rounded */
+    border: 1px solid rgba(0, 188, 212, 0.3);
+    background-color: #2a2a40; /* Darker background for input fields */
+    color: #e0e0e0; /* Light text color */
+    font-family: 'Rajdhani', sans-serif;
+    font-size: 1.1rem;
+    min-width: 220px;
+    box-shadow: inset 0 2px 5px rgba(0,0,0,0.3);
+    appearance: none; /* Remove default arrow in some browsers */
+    background-image: url("data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/svg' viewBox='0 0 24 24' fill='%2300bcd4'%3E%3Cpath d='M7 10l5 5 5-5z'/%3E%3C/svg%3E"); /* Custom SVG arrow */
+    background-repeat: no-repeat;
+    background-position: right 10px center;
+    background-size: 20px;
+}
+
+select:focus {
+    border-color: #00bcd4;
+    outline: none;
+    box-shadow: 0 0 0 3px rgba(0, 188, 212, 0.3), inset 0 2px 5px rgba(0,0,0,0.5);
+}
+
+/* NEW: Date Range Picker Styling */
+.date-range-picker {
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  gap: 15px;
+  margin: 20px 0;
+  flex-wrap: wrap; /* Allow wrapping on small screens */
+}
+
+.date-range-picker label {
+  font-family: 'Rajdhani', sans-serif; /* Use Rajdhani for date labels */
+  color: #a0a0a0; /* Slightly muted color */
+  font-size: 1.05em;
+  margin-right: 5px;
+  text-shadow: none; /* No glow for these labels */
+}
+
+.date-range-picker input[type="date"] {
+  padding: 10px 15px;
+  border-radius: 8px;
+  border: 1px solid rgba(0, 188, 212, 0.3);
+  background-color: #2a2a40;
+  color: #e0e0e0;
+  font-family: 'Rajdhani', sans-serif;
+  font-size: 1rem;
+  box-shadow: inset 0 2px 5px rgba(0,0,0,0.3);
+  -webkit-appearance: none; /* For custom date picker styling in WebKit */
+  appearance: none;
+  cursor: pointer;
+}
+
+.date-range-picker input[type="date"]::-webkit-calendar-picker-indicator {
+  filter: invert(0.8) sepia(1) saturate(5) hue-rotate(170deg) brightness(1.2); /* Make calendar icon cyan */
+  cursor: pointer;
+}
+
+.date-range-picker input[type="date"]:focus {
+  border-color: #00bcd4;
+  outline: none;
+  box-shadow: 0 0 0 3px rgba(0, 188, 212, 0.3), inset 0 2px 5px rgba(0,0,0,0.5);
+}
+
+
+/* Styles for the Chart container */
+.chart-container {
+    width: 100%; /* Take full width of its parent */
+    margin: 30px auto;
+    max-width: 900px; /* Keep consistent max-width with table */
+    height: 450px; /* Set a fixed height for consistency */
+    background-color: rgba(30, 30, 50, 0.8); /* Slightly darker, more opaque background for the chart */
+    border: 1px solid rgba(0, 188, 212, 0.2);
+    padding: 25px;
+    border-radius: 12px;
+    box-shadow: 0 0 20px rgba(0, 188, 212, 0.15);
+}
+
+/* Chart Type Selector Buttons */
+.chart-type-selector {
+  margin-bottom: 20px;
+  display: flex; /* Arrange buttons horizontally */
+  justify-content: center; /* Center them */
+  gap: 15px; /* Space between buttons */
+}
+
+.chart-type-selector button {
+  padding: 12px 25px;
+  border: 1px solid rgba(0, 188, 212, 0.4);
+  border-radius: 8px;
+  background-color: rgba(26, 26, 46, 0.6);
+  color: #00bcd4;
+  font-family: 'Orbitron', sans-serif;
+  font-weight: bold;
+  cursor: pointer;
+  transition: all 0.3s ease;
+  font-size: 1rem;
+  box-shadow: 0 0 5px rgba(0, 188, 212, 0.2);
+}
+
+.chart-type-selector button:hover {
+  background-color: rgba(0, 188, 212, 0.2);
+  box-shadow: 0 0 12px rgba(0, 188, 212, 0.6);
+  color: #e0e0e0;
+}
+
+.chart-type-selector button.active {
+  background-color: #00bcd4; /* Active button background */
+  color: #1a1a2e; /* Dark text for active button */
+  box-shadow: 0 0 15px rgba(0, 188, 212, 0.8); /* Stronger glow for active */
+  border-color: #00bcd4;
+  text-shadow: 0 0 5px rgba(255, 255, 255, 0.5);
+}
+
+/* Messages (loading, error, no data) */
+p {
+    color: #e0e0e0;
+    margin-top: 20px;
+    font-size: 1.1em;
+    text-align: center;
+}
+
+p.error-message { /* Specific style for error messages */
+    color: #ff6b6b !important; /* Brighter red for visibility */
+    text-shadow: 0 0 5px rgba(255, 107, 107, 0.5);
+}
+
+/* Basic responsiveness for smaller screens */
+@media (max-width: 992px) {
+    .App-header h1 {
+        font-size: 2.2em;
+    }
+    .dashboard-container {
+        padding: 20px;
+        margin: 20px auto;
+    }
+    h2 {
+        font-size: 1.8em;
+        margin-top: 25px;
+        margin-bottom: 20px;
+    }
+    th, td {
+        padding: 12px 15px;
+        font-size: 0.95em;
+    }
+    .chart-container, .table-container {
+        padding: 15px;
+    }
+    .chart-type-selector button {
+        padding: 10px 20px;
+        font-size: 0.9rem;
+    }
+    .date-range-picker {
+        gap: 10px; /* Reduce gap */
+    }
+    .date-range-picker input[type="date"] {
+        padding: 8px 12px;
+        font-size: 0.9rem;
+    }
+}
+
+@media (max-width: 768px) {
+    .App-header {
+        padding: 15px 10px;
+    }
+    .App-header h1 {
+        font-size: 1.8em;
+    }
+    .dashboard-container {
+        padding: 15px;
+        margin: 15px auto;
+    }
+    h2 {
+        font-size: 1.5em;
+        margin-top: 20px;
+        margin-bottom: 15px;
+    }
+    th, td {
+        padding: 10px 12px;
+        font-size: 0.9em;
+    }
+    select {
+        min-width: unset; /* Allow it to shrink on smaller screens */
+        width: 100%; /* Take full width */
+        margin-top: 10px;
+    }
+    .select-container label {
+        display: block; /* Stack label above select */
+        margin-bottom: 5px;
+        margin-right: 0;
+    }
+    .table-container {
+        overflow-x: auto; /* Enable horizontal scroll for table */
+        -webkit-overflow-scrolling: touch;
+        padding: 0; /* Remove padding here so table takes full space */
+    }
+    table {
+      margin: 0; /* Ensure no margin pushes table out of container */
+      min-width: 600px; /* Ensure table is wide enough to scroll if needed */
+    }
+    .chart-container {
+      height: 400px; /* Adjust height for smaller screens */
+    }
+    .date-range-picker {
+        flex-direction: column; /* Stack date inputs vertically */
+        gap: 8px;
+    }
+    .date-range-picker label,
+    .date-range-picker input[type="date"] {
+        width: 80%; /* Make inputs wider */
+        margin: 0 auto; /* Center them */
+        text-align: center;
+    }
+    .date-range-picker label {
+        margin-bottom: -5px; /* Adjust spacing when stacked */
+        margin-top: 5px;
+    }
+}
+
+@media (max-width: 480px) {
+    .App-header h1 {
+        font-size: 1.4em;
+    }
+    h2 {
+        font-size: 1.3em;
+    }
+    th, td {
+        padding: 8px;
+        font-size: 0.85em;
+    }
+    /* Specific adjustment to prevent very small timestamps */
+    td:last-child { /* Target timestamp column */
+        font-size: 0.75em; /* Slightly smaller font for timestamp on very small screens */
+    }
+    .chart-type-selector {
+        flex-direction: column; /* Stack buttons vertically on very small screens */
+        gap: 8px;
+    }
+    .chart-type-selector button {
+        width: 80%; /* Make buttons wider */
+        margin: 0 auto; /* Center stacked buttons */
+        padding: 10px;
+    }
 }
